@@ -4,12 +4,13 @@ import java.util.Objects;
 
 public class User {
 
+    private Long id;
     private String firstName;
     private String lastName;
     private Integer age;
-    private Long id;
 
     public User() {
+
     }
 
     public User(String firstName, String lastName, Integer age, Long id) {
@@ -28,6 +29,10 @@ public class User {
                 ", id=" + id +
                 '}';
     }
+
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
 
     public String getFirstName() {
         return firstName;
@@ -49,17 +54,7 @@ public class User {
         return age;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setAge(Integer age) { this.age = age; }
 
     @Override
     public boolean equals(Object o) {
