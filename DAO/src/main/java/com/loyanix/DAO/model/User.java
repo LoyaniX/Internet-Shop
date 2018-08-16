@@ -1,12 +1,24 @@
 package com.loyanix.DAO.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "USERS")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false)
     private Long id;
+
+    @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
+
+    @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
+
+    @Column(name = "AGE")
     private Integer age;
 
     public User() {
