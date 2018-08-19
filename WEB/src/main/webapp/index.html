@@ -5,10 +5,12 @@
     <title>LoyaniX project</title>
     <!-- Bootstrap -->
     <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-3.3.1.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <script src="js/script.js"></script>
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -30,41 +32,89 @@
             </ul>
         </div>
     </nav>
-    <div class="container" id="tab">
+
+    <div class="container" id="tabU" style="display: none;">
+
         <div class="form-row">
             <div class="but col-md-4" align="center">
-                <button type="button" class="btn btn-primary">Добавить</button>
+                <button type="button" id="showAddForm" class="btn btn-dark">Добавить</button>
             </div>
             <div class="but col-md-4" align="center">
-                <button type="button" class="btn btn-primary">Изменить</button>
+                <button type="button" id="showEditForm" class="btn btn-dark">Изменить</button>
             </div>
             <div class="but col-md-4" align="center">
-                <button type="button" class="btn btn-primary">Удалить</button>
+                <button type="button" id="showDeleteForm" class="btn btn-dark">Удалить</button>
             </div>
         </div>
+
+        <form  class="container container-form" id="formAdd">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputAddFirstName">Имя</label>
+                    <input type="text" class="form-control" id="inputAddFirstName" placeholder="First Name">
+                </div>
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-4">
+                    <label for="inputAddSecoundName">Фамилия</label>
+                    <input type="text" class="form-control" id="inputAddSecoundName" placeholder="Secound Name">
+                </div>
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                    <label for="inputAddAge">Возраст</label>
+                    <input type="number" class="form-control" id="inputAddAge" placeholder="Age">
+                </div>
+            </div>
+            <div class="form" align="center">
+                <button type="button" id="addData" class="btn btn-dark">Добавить</button>
+            </div>
+        </form>
+
+        <form  class="container container-form" id="formEdit">
+            <div class="form-row">
+                <div class="form-group col-md-1">
+                    <label for="inputEditId">Id</label>
+                    <input type="text" class="form-control" id="inputEditId" placeholder="ID">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputEditFirstName">Имя</label>
+                    <input type="text" class="form-control" id="inputEditFirstName" placeholder="First Name">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputEditSecoundName">Фамилия</label>
+                    <input type="text" class="form-control" id="inputEditSecoundName" placeholder="Secound Name">
+                </div>
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                    <label for="inputEditAge">Возраст</label>
+                    <input type="number" class="form-control" id="inputEditAge" placeholder="Age">
+                </div>
+            </div>
+            <div class="form" align="center">
+                <button type="button" id="editData" class="btn btn-dark">Изменить</button>
+            </div>
+        </form>
+
+        <form  class="container container-form col-md-5" id="formDelete" >
+            <div class="form-row" align="center">
+                <div class="form input-group" align="center">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">ID</div>
+                    </div>
+                    <input type="text" class="form-control" id="inputDeleteId" placeholder="ID">
+                    <label class="col-md-1"></label>
+                    <button type="button" id="deleteData" class="btn btn-dark">Удалить</button>
+                </div>
+            </div>
+        </form>
+
         <table class="table table-striped users-table">
             <tr><th></th><th></th><th></th><th></th></tr>
             <tr><td></td><td></td><td></td><td></td></tr>
         </table>
-        <form  class="container" id="form">
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="inputFirstName">Имя</label>
-                    <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputSecoundName">Фамилия</label>
-                    <input type="text" class="form-control" id="inputSecoundName" placeholder="Secound Name">
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="inputAge">Возраст</label>
-                    <input type="number" class="form-control" id="inputAge" placeholder="Age">
-                </div>
-            </div>
-            <div class="form">
-                <button type="submit" class="btn btn-primary">Добавить</button>
-            </div>
-        </form>
+
     </div>
+
+
+
 </body>
 </html>

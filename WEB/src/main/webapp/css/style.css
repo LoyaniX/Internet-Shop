@@ -1,6 +1,3 @@
-#tab, #form, #row {
+#tabU, #formAdd, #formEdit, #formDelete, #row {
     display: none;
-}
-.but{
-    padding: 10px;
 }

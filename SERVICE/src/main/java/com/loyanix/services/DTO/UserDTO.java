@@ -2,6 +2,7 @@ package com.loyanix.services.DTO;
 
 public class UserDTO {
 
+    private  Long Id;
     private String firstName;
     private String lastName;
     private int age;
@@ -9,10 +10,19 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String firstName, String lastName, int age) {
+    public UserDTO(Long Id ,String firstName, String lastName, int age) {
+        this.Id = Id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
     }
 
     public String getFirstName() {
@@ -42,7 +52,8 @@ public class UserDTO {
     @Override
     public String toString() {
         return "UserDTO{" +
-                "firstName='" + firstName + '\'' +
+                "Id=" + Id +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 '}';
