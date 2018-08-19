@@ -81,7 +81,7 @@ $(document).ready(function () {
 
     $("#addData").click(function () {
         $.ajax({
-            url: 'http://localhost:8080/users',
+            url: '/users',
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
     $("#deleteData").click(function () {
         $.ajax({
-            url: 'http://localhost:8080/users/' + $('#inputDeleteId').val(),
+            url: '/users/' + $('#inputDeleteId').val(),
             type: 'DELETE',
             success: true
         });
@@ -102,7 +102,7 @@ $(document).ready(function () {
 
     $("#editData").click(function () {
         $.ajax({
-            url: 'http://localhost:8080/users/' + $('#inputEditId').val(),
+            url: '/users/' + $('#inputEditId').val(),
             type: 'PUT',
             dataType: 'json',
             contentType: 'application/json',
