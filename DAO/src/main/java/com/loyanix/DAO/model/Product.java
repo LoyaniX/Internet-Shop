@@ -1,15 +1,33 @@
 package com.loyanix.DAO.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "PRODUCTS")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false)
     private Long id;
+
+    @Column(name = "NAME", nullable = false)
     private String name;
+
+    @Column(name = "PRICE", nullable = false)
     private Double price;
+
+    @Column(name = "CATEGORY", nullable = false)
     private String category;
+
+    @Column(name = "GENDER", nullable = false)
     private String gender;
+
+    @Column(name = "SIZE", nullable = false)
     private String size;
+
+    @Column(name = "QUANTITY", nullable = false)
     private Integer quantity;
 
     public Product() {

@@ -3,7 +3,9 @@ package com.loyanix.services.convert.Impl;
 import com.loyanix.DAO.model.Product;
 import com.loyanix.services.DTO.ProductDTO;
 import com.loyanix.services.convert.ProductConvert;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductConvertImpl implements ProductConvert {
 
     @Override

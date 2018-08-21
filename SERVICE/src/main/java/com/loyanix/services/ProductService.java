@@ -4,7 +4,7 @@ import com.loyanix.services.DTO.ProductDTO;
 
 import java.util.List;
 
-public interface ProdactService {
+public interface ProductService {
 
     void create(ProductDTO product);
     void delete(Long id);

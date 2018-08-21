@@ -1,7 +1,7 @@
 package com.loyanix.web.controllers;
 
-import com.loyanix.services.DTO.UserDTO;
-import com.loyanix.services.UserService;
+import com.loyanix.services.DTO.ProductDTO;
+import com.loyanix.services.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,47 +13,48 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/products")
+public class ProductController {
 
+    private final ProductService productService;
     private final static Logger log = LoggerFactory.getLogger(UserController.class);
-    private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService){
-        this.userService = userService;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody List<UserDTO> findAll(){
-        log.info("Find all users");
-        return userService.findAll();
+    public @ResponseBody List<ProductDTO> findAll() {
+        log.info("Find all product");
+        return productService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody UserDTO get(@PathVariable("id") Long id){
-        log.info("Find {}",id );
-        return userService.get(id);
+    public ProductDTO get(@PathVariable("id") Long id){
+        log.info("Delete product with id {}", id);
+        return productService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody UserDTO user) {
-        log.info("Create user: {}", user.toString());
-        userService.create(user);
+    public void create(@RequestBody ProductDTO productDTO){
+        log.info("Create new product: {}", productDTO.toString());
+        productService.create(productDTO);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id){
-        log.info("Delete user with id: {}", id);
-        userService.delete(id);
+        log.info("Delete product with id: {}", id);
+        productService.delete(id);
     }
+
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void update(@PathVariable("id") Long id, @RequestBody UserDTO user){
-        log.info("Update user with id: {}, data:{}", id, user);
-        userService.update(id, user);
+    public void update(@PathVariable("id") Long id, @RequestBody ProductDTO productDTO){
+        log.info("Update product with id: {}, data:{}", id, productDTO);
+        productService.udpate(id, productDTO);
     }
 }
