@@ -16,6 +16,7 @@ public class ProductConvertImpl implements ProductConvert {
                 dto.getPrice(),
                 dto.getCatedory(),
                 dto.getGender(),
+                dto.getColour(),
                 dto.getSize(),
                 dto.getQuantity());
     }
@@ -28,6 +29,7 @@ public class ProductConvertImpl implements ProductConvert {
                 entity.getPrice(),
                 entity.getCategory(),
                 entity.getGender(),
+                entity.getColour(),
                 entity.getSize(),
                 entity.getQuantity());
     }

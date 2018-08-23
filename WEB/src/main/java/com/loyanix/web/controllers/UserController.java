@@ -30,7 +30,7 @@ public class UserController {
         return userService.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "{id}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody UserDTO get(@PathVariable("id") Long id){
         log.info("Find {}",id );
         return userService.get(id);

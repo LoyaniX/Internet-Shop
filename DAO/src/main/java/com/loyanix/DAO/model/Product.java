@@ -24,6 +24,9 @@ public class Product {
     @Column(name = "GENDER", nullable = false)
     private String gender;
 
+    @Column(name = "COLOUR", nullable = false)
+    private String colour;
+
     @Column(name = "SIZE", nullable = false)
     private String size;
 
@@ -33,12 +36,13 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id, String name, Double price, String category, String gender, String size, Integer quantity) {
+    public Product(Long id, String name, Double price, String category, String gender,String colour, String size, Integer quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
         this.gender = gender;
+        this.colour = colour;
         this.size = size;
         this.quantity = quantity;
     }
@@ -83,6 +87,14 @@ public class Product {
         this.gender = gender;
     }
 
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
     public String getSize() {
         return size;
     }
@@ -109,13 +121,14 @@ public class Product {
                 Objects.equals(price, product.price) &&
                 Objects.equals(category, product.category) &&
                 Objects.equals(gender, product.gender) &&
+                Objects.equals(colour, product.colour) &&
                 Objects.equals(size, product.size) &&
                 Objects.equals(quantity, product.quantity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, category, gender, size, quantity);
+        return Objects.hash(id, name, price, category, gender, colour, size, quantity);
     }
 
     @Override
@@ -126,6 +139,7 @@ public class Product {
                 ", price=" + price +
                 ", category='" + category + '\'' +
                 ", gender='" + gender + '\'' +
+                ", colour='" + colour + '\'' +
                 ", size='" + size + '\'' +
                 ", quantity=" + quantity +
                 '}';
