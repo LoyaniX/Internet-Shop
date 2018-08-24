@@ -26,7 +26,7 @@
                     <a class="nav-link p" id="showUsers" href="#">Пользователи</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="showProdacts" href="#">Продукты</a>
+                    <a class="nav-link" id="showProducts" href="#">Продукты</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="showOrders" href="#">Заказы</a>
@@ -35,8 +35,9 @@
         </div>
     </nav>
 
-    <div class="container container-form" id="tabU" style="display: none;">
+    <div class="container-fluid container-form" id="tabU">
 
+        <h1>Пользователи</h1>
         <div class="form-row">
             <div class="but col-md-4" align="center">
                 <button type="button" id="showAddForm" class="btn btn-dark">Добавить</button>
@@ -116,6 +117,84 @@
 
     </div>
 
+    <div class="container-fluid container-form" id="tabP">
+
+        <h1>Продукты</h1>
+        <div class="form-row">
+            <div class="but col-md-4" align="center">
+                <button type="button" id="showAddFormProd" class="btn btn-dark">Добавить</button>
+            </div>
+            <div class="but col-md-4" align="center">
+                <button type="button" id="showEditFormProd" class="btn btn-dark">Изменить</button>
+            </div>
+            <div class="but col-md-4" align="center">
+                <button type="button" id="showDeleteFormProd" class="btn btn-dark">Удалить</button>
+            </div>
+        </div>
+
+        <form  class="container-fluid container-form" id="formAddProd">
+            <div class="form-row">
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                    <label for="inputAddNameProd">Название</label>
+                    <input type="text" class="form-control" id="inputAddNameProd" placeholder="Name">
+                </div>
+                <div class="form-group col-md-1">
+                    <label for="inputAddPriceProd">Цена</label>
+                    <input type="number" class="form-control" id="inputAddPriceProd" placeholder="Price">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputAddCategoryProd">Категория</label>
+                    <input type="text" class="form-control" id="inputAddCategoryProd" placeholder="Category">
+                </div>
+                <div class="form-group col-md-1">
+                    <label for="inputAddGenderProd">Пол</label>
+                    <select class="form-control" id="inputAddGenderProd">
+                        <option> </option>
+                        <option>М</option>
+                        <option>Ж</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputAddColorProd">Цвет</label>
+                    <select class="form-control" id="inputAddColorProd">
+                        <option> </option>
+                        <option>Синий</option>
+                        <option>Желтый</option>
+                        <option>Красный</option>
+                        <option>Фиолетовый</option>
+                        <option>Зеленый</option>
+                        <option>Черный</option>
+                        <option>Серый</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-1">
+                    <label for="inputAddSizeProd">Размер</label>
+                    <select class="form-control" id="inputAddSizeProd">
+                        <option> </option>
+                        <option>XS</option>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-1">
+                    <label for="inputAddQuantityProd">Количество</label>
+                    <input type="number" class="form-control" id="inputAddQuantityProd" placeholder="Q-ty">
+                </div>
+            </div>
+            <div class="form" align="center">
+                <button type="button" id="addDataProd" class="btn btn-dark">Добавить</button>
+            </div>
+        </form>
+
+        <table class="table table-striped product-table" style="margin: 10px">
+            <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </table>
+
+    </div>
 
 
 </body>

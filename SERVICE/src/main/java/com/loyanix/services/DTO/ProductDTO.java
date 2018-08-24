@@ -4,7 +4,7 @@ public class ProductDTO {
     private Long id;
     private String name;
     private Double price;
-    private String catedory;
+    private String category;
     private String gender;
     private String colour;
     private String size;
@@ -13,11 +13,11 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-    public ProductDTO(Long id, String name, Double price, String catedory, String gender,String colour, String size, Integer quantity) {
+    public ProductDTO(Long id, String name, Double price, String category, String gender,String colour, String size, Integer quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.catedory = catedory;
+        this.category = category;
         this.gender = gender;
         this.colour = colour;
         this.size = size;
@@ -48,12 +48,12 @@ public class ProductDTO {
         this.price = price;
     }
 
-    public String getCatedory() {
-        return catedory;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCatedory(String catedory) {
-        this.catedory = catedory;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getGender() {
@@ -90,7 +90,7 @@ public class ProductDTO {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", catedory='" + catedory + '\'' +
+                ", category='" + category + '\'' +
                 ", gender='" + gender + '\'' +
                 ", colour='" + colour + '\'' +
                 ", size='" + size + '\'' +

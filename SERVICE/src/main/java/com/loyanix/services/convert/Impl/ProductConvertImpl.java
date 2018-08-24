@@ -14,7 +14,7 @@ public class ProductConvertImpl implements ProductConvert {
                 dto.getId(),
                 dto.getName(),
                 dto.getPrice(),
-                dto.getCatedory(),
+                dto.getCategory(),
                 dto.getGender(),
                 dto.getColour(),
                 dto.getSize(),

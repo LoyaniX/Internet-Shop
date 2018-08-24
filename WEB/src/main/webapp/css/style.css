@@ -1,3 +1,11 @@
-#tabU, #formAdd, #formEdit, #formDelete, #row {
+#tabU, #tabP,#formAddProd, #formAdd, #formEdit, #formDelete, #row {
     display: none;
+}
+
+.but{
+    padding: 10px;
+}
+
+h1{
+    text-align: center;
 }
