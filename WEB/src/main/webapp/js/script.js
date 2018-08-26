@@ -147,10 +147,48 @@ $(document).ready(function () {
     $("#showAddFormProd").click(function () {
         if(!flagFormAddProd){
             $('#formAddProd').css('display','table');
+            $('#formEditProd').css('display', 'none');
+            $('#formDeleteProd').css('display', 'none');
             flagFormAddProd = true;
+            flagFormEditProd = false;
+            flagFormDeleteProd = false;
         }else {
             $('#formAddProd').css('display', 'none');
+            $('#formEditProd').css('display', 'none');
+            $('#formDeleteProd').css('display', 'none');
             flagFormAddProd = false;
+        }
+    });
+
+    $("#showEditFormProd").click(function () {
+        if(!flagFormEditProd){
+            $('#formEditProd').css('display','table');
+            $('#formAddProd').css('display', 'none');
+            $('#formDeleteProd').css('display', 'none');
+            flagFormEditProd = true;
+            flagFormAddProd = false;
+            flagFormDeleteProd = false;
+        }else {
+            $('#formEditProd').css('display', 'none');
+            $('#formAddProd').css('display', 'none');
+            $('#formDeleteProd').css('display', 'none');
+            flagFormEditProd = false;
+        }
+    });
+
+    $("#showDeleteFormProd").click(function () {
+        if(!flagFormDeleteProd){
+            $('#formDeleteProd').css('display','table');
+            $('#formEditProd').css('display','none');
+            $('#formAddProd').css('display', 'none');
+            flagFormDeleteProd = true;
+            flagFormEditProd = false;
+            flagFormAddProd = false;
+        }else {
+            $('#formDeleteProd').css('display', 'none');
+            $('#formEditProd').css('display', 'none');
+            $('#formAddProd').css('display', 'none');
+            flagFormDeleteProd = false;
         }
     });
 
@@ -161,13 +199,38 @@ $(document).ready(function () {
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify( { "name": $('#inputAddNameProd').val(),
-                                    "price": $('#inputAddPriceProd').val(),
-                                    "category": $('#inputAddCategoryProd').val(),
-                                    "gender": $('#inputAddGenderProd').val(),
-                                    "colour": $('#inputAddColorProd').val(),
-                                    "size": $('#inputAddSizeProd').val(),
-                                    "quantity": $('#inputAddQuantityProd').val() } ),
+                "price": $('#inputAddPriceProd').val(),
+                "category": $('#inputAddCategoryProd').val(),
+                "gender": $('#inputAddGenderProd').val(),
+                "colour": $('#inputAddColorProd').val(),
+                "size": $('#inputAddSizeProd').val(),
+                "quantity": $('#inputAddQuantityProd').val() } ),
             success: true
+        });
+    });
+
+    $("#deleteDataProd").click(function () {
+        $.ajax({
+            url: '/products/' + $('#inputDeleteIdProd').val(),
+            type: 'DELETE',
+            success: true
+        });
+    });
+
+    $("#editDataProd").click(function () {
+        $.ajax({
+            url: '/products/' + $('#inputEditIdProd').val(),
+            type: 'PUT',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify( { "id": $('#inputEditIdProd').val,
+                "name": $('#inputEditNameProd').val(),
+                "price": $('#inputEditPriceProd').val(),
+                "category": $('#inputEditCategoryProd').val(),
+                "gender": $('#inputEditGenderProd').val(),
+                "colour": $('#inputEditColorProd').val(),
+                "size": $('#inputEditSizeProd').val(),
+                "quantity": $('#inputEditQuantityProd').val()})
         });
     });
 

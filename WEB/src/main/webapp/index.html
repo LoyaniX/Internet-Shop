@@ -189,6 +189,79 @@
             </div>
         </form>
 
+        <form  class="container-fluid container-form" id="formEditProd">
+            <div class="form-row">
+                <div class="form-group col-md-1">
+                    <label for="inputEditIdProd">Id</label>
+                    <input type="text" class="form-control" id="inputEditIdProd" placeholder="ID">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputEditNameProd">Название</label>
+                    <input type="text" class="form-control" id="inputEditNameProd" placeholder="Name">
+                </div>
+                <div class="form-group col-md-1">
+                    <label for="inputEditPriceProd">Цена</label>
+                    <input type="number" class="form-control" id="inputEditPriceProd" placeholder="Price">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputEditCategoryProd">Категория</label>
+                    <input type="text" class="form-control" id="inputEditCategoryProd" placeholder="Category">
+                </div>
+                <div class="form-group col-md-1">
+                    <label for="inputEditGenderProd">Пол</label>
+                    <select class="form-control" id="inputEditGenderProd">
+                        <option> </option>
+                        <option>М</option>
+                        <option>Ж</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputEditColorProd">Цвет</label>
+                    <select class="form-control" id="inputEditColorProd">
+                        <option> </option>
+                        <option>Синий</option>
+                        <option>Желтый</option>
+                        <option>Красный</option>
+                        <option>Фиолетовый</option>
+                        <option>Зеленый</option>
+                        <option>Черный</option>
+                        <option>Серый</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-1">
+                    <label for="inputEditSizeProd">Размер</label>
+                    <select class="form-control" id="inputEditSizeProd">
+                        <option> </option>
+                        <option>XS</option>
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                        <option>XL</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-1">
+                    <label for="inputEditQuantityProd">Количество</label>
+                    <input type="number" class="form-control" id="inputEditQuantityProd" placeholder="Q-ty">
+                </div>
+            </div>
+            <div class="form" align="center">
+                <button type="button" id="editDataProd" class="btn btn-dark">Изменить</button>
+            </div>
+        </form>
+
+        <form  class="container container-form col-md-5" id="formDeleteProd" >
+            <div class="form-row" align="center">
+                <div class="form input-group" align="center">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">ID</div>
+                    </div>
+                    <input type="text" class="form-control" id="inputDeleteIdProd" placeholder="ID">
+                    <label class="col-md-1"></label>
+                    <button type="button" id="deleteDataProd" class="btn btn-dark">Удалить</button>
+                </div>
+            </div>
+        </form>
+
         <table class="table table-striped product-table" style="margin: 10px">
             <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
             <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>

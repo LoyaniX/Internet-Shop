@@ -1,4 +1,4 @@
-#tabU, #tabP,#formAddProd, #formAdd, #formEdit, #formDelete, #row {
+#tabU, #tabP, #formAddProd, #formEditProd,#formDeleteProd, #formAdd, #formEdit, #formDelete, #row {
     display: none;
 }
 

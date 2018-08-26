@@ -2,6 +2,7 @@ package com.loyanix.DAO.model;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "PRODUCTS")
@@ -33,6 +34,9 @@ public class Product {
     @Column(name = "QUANTITY", nullable = false)
     private Integer quantity;
 
+    @ManyToMany(targetEntity = Order.class)
+    private Set<Order> orders;
+
     public Product() {
     }
 
@@ -47,69 +51,41 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) { this.id = id; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public Double getPrice() {
-        return price;
-    }
+    public Double getPrice() { return price; }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
+    public void setPrice(Double price) { this.price = price; }
 
-    public String getCategory() {
-        return category;
-    }
+    public String getCategory() { return category; }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    public void setCategory(String category) { this.category = category; }
 
-    public String getGender() {
-        return gender;
-    }
+    public String getGender() { return gender; }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    public void setGender(String gender) { this.gender = gender; }
 
-    public String getColour() {
-        return colour;
-    }
+    public String getColour() { return colour; }
 
-    public void setColour(String colour) {
-        this.colour = colour;
-    }
+    public void setColour(String colour) { this.colour = colour; }
 
-    public String getSize() {
-        return size;
-    }
+    public String getSize() { return size; }
 
-    public void setSize(String size) {
-        this.size = size;
-    }
+    public void setSize(String size) { this.size = size; }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
+    public Integer getQuantity() { return quantity; }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
+
+    public Set<Order> getOrders() { return orders; }
+
+    public void setOrders(Set<Order> orders) { this.orders = orders; }
 
     @Override
     public boolean equals(Object o) {
