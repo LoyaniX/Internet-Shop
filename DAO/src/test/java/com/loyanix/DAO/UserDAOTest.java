@@ -22,6 +22,7 @@ import java.util.List;
 @Transactional
 public class UserDAOTest {
 
+    @Autowired
     private UserDAO userDAO;
 
     @PersistenceContext
@@ -55,7 +56,7 @@ public class UserDAOTest {
         entityManager.persist(user);
         //when
         //delete user by id
-        long id = user.getId();
+        Long id = user.getId();
         userDAO.delete(id);
         //then
         //check user
