@@ -21,7 +21,6 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
     @Transactional
     public void create(Order order) {
-        order.setStatus("CREATED");
         entityManager.persist(order);
     }
 

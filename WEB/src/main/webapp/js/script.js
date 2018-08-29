@@ -1,5 +1,6 @@
 var flag = false;
 var flagProd = false;
+var flagOrd = false;
 var flagFormAddProd = false;
 var flagFormEditProd = false;
 var flagFormDeleteProd = false;
@@ -29,6 +30,17 @@ function show() {
         });
         $('.product-table').html(tblHTML);
     });
+    $.getJSON("/orders",function(response){
+        var tblHTML ='<tr><th>ID</th><th>Пользователь</th><th>Продукты(цена)</th><th>Итоговая цена</th><th>Дата заказа</th><th>Статус</th>';
+        $.each(response, function (i, ord) {
+            tblHTML += '<tr><td>' + ord.id + '</td><td>' + ord.user.firstName + " " + ord.user.lastName + '</td><td>';
+            $.each(ord.products, function (pi, prod) {
+                tblHTML += prod.name + "(" + prod.price + ")" + '<br>';
+            });
+            tblHTML += '</td><td>' + ord.orderPrice + '</td><td>' + new Date(ord.dateOfCreate).toLocaleDateString() + '</td><td>' + ord.status + '</td></tr>';
+        });
+        $('.order-table').html(tblHTML);
+    });
 }
 $(document).ready(function () {
 
@@ -38,11 +50,15 @@ $(document).ready(function () {
         if(!flag){
             $('#tabU').css('display','table');
             $('#tabP').css('display','none');
+            $('#tabO').css('display','none');
+            flagOrd = false;
             flagProd = false;
             flag = true;
         }else {
             $('#tabU').css('display', 'none');
             $('#tabP').css('display','none');
+            $('#tabO').css('display','none');
+            flagOrd = false;
             flagProd = false;
             flag = false;
         }
@@ -134,11 +150,15 @@ $(document).ready(function () {
         if(!flagProd){
             $('#tabP').css('display','table');
             $('#tabU').css('display', 'none');
+            $('#tabO').css('display','none');
+            flagOrd = false;
             flag = false;
             flagProd = true;
         }else {
             $('#tabP').css('display', 'none');
             $('#tabU').css('display', 'none');
+            $('#tabO').css('display','none');
+            flagOrd = false;
             flag = false;
             flagProd = false;
         }
@@ -233,5 +253,25 @@ $(document).ready(function () {
                 "quantity": $('#inputEditQuantityProd').val()})
         });
     });
+
+
+    $("#showOrders").click(function () {
+        if(!flagOrd){
+            $('#tabO').css('display','table');
+            $('#tabP').css('display','none');
+            $('#tabU').css('display','none');
+            flagOrd = true;
+            flagProd = false;
+            flag = false;
+        }else {
+            $('#tabO').css('display','none');
+            $('#tabU').css('display', 'none');
+            $('#tabP').css('display','none');
+            flagProd = false;
+            flag = false;
+            flagOrd = false;
+        }
+    });
+
 
 });

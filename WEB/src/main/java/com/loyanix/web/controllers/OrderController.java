@@ -35,8 +35,6 @@ public class OrderController {
     };
 
 
-
-
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody List<OrderDTO> findAll(){
         return orderService.findAll();
