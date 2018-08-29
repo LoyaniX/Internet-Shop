@@ -35,7 +35,7 @@ public class ProductDAOTest {
     public void testCreate(){
 
         //given
-        Product product = new Product(null,"nike", 100.0, "short", "M", " red", "L", 10);
+        Product product = new Product(null,"nike", 100, "short", "M", " red", "L", 10);
         //when
         productDAO.create(product);
         //then
@@ -46,7 +46,7 @@ public class ProductDAOTest {
     public void testDelete(){
 
         //given
-        Product product = new Product(null,"nike", 100.0, "short", "M", " red", "L", 10);
+        Product product = new Product(null,"nike", 100, "short", "M", " red", "L", 10);
         entityManager.persist(product);
         //when
         Long id = product.getId();
@@ -61,7 +61,7 @@ public class ProductDAOTest {
     public void testGetUser(){
 
         //given
-        Product product = new Product(null,"nike", 100.0, "short", "M", " red", "L", 10);
+        Product product = new Product(null,"nike", 100, "short", "M", " red", "L", 10);
         entityManager.persist(product);
         //when
         Product actualProduct = productDAO.get(product.getId());
@@ -73,9 +73,9 @@ public class ProductDAOTest {
     public void testUpdate(){
 
         //given
-        Product product = new Product(null,"nike", 100.0, "short", "M", " red", "L", 10);
+        Product product = new Product(null,"nike", 100, "short", "M", " red", "L", 10);
         entityManager.persist(product);
-        Product newProduct = new Product(null,"adidas", 10.0, "short", "M", " red", "L", 10);
+        Product newProduct = new Product(null,"adidas", 10, "short", "M", " red", "L", 10);
         //when
         productDAO.update(product.getId(), newProduct);
         //then
@@ -86,11 +86,11 @@ public class ProductDAOTest {
     public void testFindAll(){
 
         //given
-        Product product = new Product(null,"nike", 100.0, "short", "M", " red", "L", 10);
-        Product product1 = new Product(null,"nike", 100.0, "short", "M", " red", "L", 10);
-        Product product2 = new Product(null,"nike", 100.0, "short", "M", " red", "L", 10);
-        Product product3 = new Product(null,"nike", 100.0, "short", "M", " red", "L", 10);
-        Product product4 = new Product(null,"nike", 100.0, "short", "M", " red", "L", 10);
+        Product product = new Product(null,"nike", 100, "short", "M", " red", "L", 10);
+        Product product1 = new Product(null,"nike", 100, "short", "M", " red", "L", 10);
+        Product product2 = new Product(null,"nike", 100, "short", "M", " red", "L", 10);
+        Product product3 = new Product(null,"nike", 100, "short", "M", " red", "L", 10);
+        Product product4 = new Product(null,"nike", 100, "short", "M", " red", "L", 10);
         entityManager.persist(product);
         entityManager.persist(product1);
         entityManager.persist(product2);

@@ -1,5 +1,7 @@
 package com.loyanix.DAO.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -17,7 +19,7 @@ public class Product {
     private String name;
 
     @Column(name = "PRICE", nullable = false)
-    private Double price;
+    private Integer price;
 
     @Column(name = "CATEGORY", nullable = false)
     private String category;
@@ -34,13 +36,14 @@ public class Product {
     @Column(name = "QUANTITY", nullable = false)
     private Integer quantity;
 
-    @ManyToMany(targetEntity = Order.class)
+    @JsonIgnore
+    @ManyToMany(mappedBy = "products")
     private Set<Order> orders;
 
     public Product() {
     }
 
-    public Product(Long id, String name, Double price, String category, String gender,String colour, String size, Integer quantity) {
+    public Product(Long id, String name, Integer price, String category, String gender,String colour, String size, Integer quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -59,9 +62,9 @@ public class Product {
 
     public void setName(String name) { this.name = name; }
 
-    public Double getPrice() { return price; }
+    public Integer getPrice() { return price; }
 
-    public void setPrice(Double price) { this.price = price; }
+    public void setPrice(Integer price) { this.price = price; }
 
     public String getCategory() { return category; }
 

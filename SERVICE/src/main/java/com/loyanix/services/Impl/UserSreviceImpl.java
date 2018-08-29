@@ -37,8 +37,7 @@ public class UserSreviceImpl implements UserService {
     }
     @Transactional(readOnly = true)
     public UserDTO get(Long id) {
-        userDao.get(id);
-        return null;
+        return userConvert.toDto(userDao.get(id));
     }
     @Transactional(readOnly = true)
     public List<UserDTO> findAll() {

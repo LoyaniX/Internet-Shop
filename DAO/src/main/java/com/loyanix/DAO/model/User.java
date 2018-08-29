@@ -1,7 +1,13 @@
 package com.loyanix.DAO.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
@@ -20,6 +26,19 @@ public class User {
 
     @Column(name = "AGE")
     private Integer age;
+
+    @OneToMany(mappedBy = "user")
+    @JsonBackReference
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+    private Set<Order> orders = new HashSet<>();
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
 
     public User() {
 

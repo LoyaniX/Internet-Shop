@@ -1,7 +1,12 @@
 package com.loyanix.DAO.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,10 +20,18 @@ public class Order {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USER_ID")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     private User user;
 
-    @ManyToMany(targetEntity = Product.class, fetch = FetchType.EAGER)
-    private Set<Product> products;
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "ORDERS_PRODUCTS",
+            joinColumns = @JoinColumn(name = "ORDER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCTS_ID")
+    )
+    private Set<Product> products = new HashSet<>();
 
     @Column(name = "PRICE", nullable = false)
     private Integer orderPrice;

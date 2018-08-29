@@ -43,8 +43,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(readOnly = true)
     @Override
     public ProductDTO get(Long id) {
-        productDAO.get(id);
-        return null;
+        return productConvert.toDto(productDAO.get(id));
     }
 
     @Transactional(readOnly = true)

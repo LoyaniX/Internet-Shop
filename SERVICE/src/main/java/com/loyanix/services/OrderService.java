@@ -9,7 +9,7 @@ public interface OrderService {
 
     void create(OrderDTO orderDTO);
     void delete(Long id);
-    void updete(Long id, OrderDTO orderDTO);
+    void update(Long id, OrderDTO orderDTO);
     OrderDTO get(Long id);
     List<OrderDTO> findAll();
     List<OrderDTO> findAllOrdersOfUser(UserDTO user);

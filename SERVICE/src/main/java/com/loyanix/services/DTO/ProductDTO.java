@@ -3,7 +3,7 @@ package com.loyanix.services.DTO;
 public class ProductDTO {
     private Long id;
     private String name;
-    private Double price;
+    private Integer price;
     private String category;
     private String gender;
     private String colour;
@@ -13,7 +13,7 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-    public ProductDTO(Long id, String name, Double price, String category, String gender,String colour, String size, Integer quantity) {
+    public ProductDTO(Long id, String name, Integer price, String category, String gender,String colour, String size, Integer quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -40,11 +40,11 @@ public class ProductDTO {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
