@@ -26,22 +26,16 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-
-
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody OrderDTO orderDTO){
         orderService.create(orderDTO);
     };
 
-
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody List<OrderDTO> findAll(){
         return orderService.findAll();
     };
-
-
-
 
     @RequestMapping(path = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody List<OrderDTO> findAllUserOrders(@RequestBody UserDTO user){

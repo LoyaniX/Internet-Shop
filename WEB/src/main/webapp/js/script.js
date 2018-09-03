@@ -45,21 +45,27 @@ function show() {
 }
 function showOrders(){
     $.getJSON("/users",function(response){
-        var select = document.getElementById('inputUser');
-        while (select.options.length > 0){
-            select.options.remove(0);
+        var selectAdd = document.getElementById('inputUser');
+        var selectEdit = document.getElementById('inputEditUser');
+        while (selectAdd.options.length > 0 && selectEdit.options.length > 0){
+            selectAdd.options.remove(0);
+            selectEdit.options.remove(0);
         }
         $.each(response, function(i, item){
-                $('#inputUser').append('<option value="' + item.id +'">' + item.firstName + " " + item.lastName + '</option>');
+            $('#inputUser').append('<option value="' + item.id +'">' + item.firstName + " " + item.lastName + '</option>');
+            $('#inputEditUser').append('<option value="' + item.id +'">' + item.firstName + " " + item.lastName + '</option>');
         });
     });
     $.getJSON("/products",function(response){
-        var select = document.getElementById('inputProducts');
-        while (select.options.length > 0){
-            select.options.remove(0);
+        var selectAdd = document.getElementById('inputProducts');
+        var selectEdit = document.getElementById('inputEditProducts');
+        while (selectAdd.options.length > 0 && selectEdit.options.length > 0){
+            selectAdd.options.remove(0);
+            selectEdit.options.remove(0);
         }
         $.each(response, function(i, item){
             $('#inputProducts').append('<option value="' + item.id +'">' + item.name + " (" + item.price + ")" + '</option>');
+            $('#inputEditProducts').append('<option value="' + item.id +'">' + item.name + " (" + item.price + ")" + '</option>');
         });
     });
 }
@@ -83,6 +89,7 @@ $(document).ready(function () {
         showOrders();
         $('#tabO').css('display','table');
         $('#tabP, #helloPage, #tabU').css('display','none');
+        $('#formEditOrder, #formAddOrder, #formDeleteOrder').css('display','none');
     });
 
     $("#mainButton").click(function () {
@@ -91,35 +98,13 @@ $(document).ready(function () {
     });
 
     $("#showAddForm").click(function () {
-        if(!flagFormAdd){
-            $('#formAdd').css('display','table');
-            $('#formEdit').css('display', 'none');
-            $('#formDelete').css('display', 'none');
-            flagFormAdd = true;
-            flagFormEdit = false;
-            flagFormDelete = false;
-        }else {
-            $('#formAdd').css('display', 'none');
-            $('#formEdit').css('display', 'none');
-            $('#formDelete').css('display', 'none');
-            flagFormAdd = false;
-        }
+        $('#formAdd').css('display','table');
+        $('#formEdit, #formDelete').css('display', 'none');
     });
 
     $("#showEditForm").click(function () {
-        if(!flagFormEdit){
-            $('#formEdit').css('display','table');
-            $('#formAdd').css('display', 'none');
-            $('#formDelete').css('display', 'none');
-            flagFormEdit = true;
-            flagFormAdd = false;
-            flagFormDelete = false;
-        }else {
-            $('#formEdit').css('display', 'none');
-            $('#formAdd').css('display', 'none');
-            $('#formDelete').css('display', 'none');
-            flagFormEdit = false;
-        }
+        $('#formEdit').css('display','table');
+        $('#formAdd, #formDelete').css('display', 'none');
     });
 
     $("#showDeleteForm").click(function () {
@@ -264,13 +249,19 @@ $(document).ready(function () {
 
     $("#showAddFormOrd").click(function () {
         showOrders();
-        if(!flagFormAddOrder){
-            $('#formAddOrder').css('display','table');
-            flagFormAddOrder = true;
-        }else {
-            $('#formAddOrder').css('display', 'none');
-            flagFormAddOrder= false;
-        }
+        $('#formAddOrder').css('display','table');
+        $('#formEditOrder, #formDeleteOrder').css('display', 'none');
+    });
+
+    $("#showEditFormOrd").click(function () {
+        showOrders();
+        $('#formEditOrder').css('display','table');
+        $('#formAddOrder, #formDeleteOrder').css('display', 'none');
+    });
+
+    $("#showDeleteFormOrd").click(function () {
+        $('#formDeleteOrder').css('display','table');
+        $('#formEditOrder, #formAddOrder').css('display','none');
     });
 
     $("#addDataOrder").click(function () {
@@ -313,12 +304,71 @@ $(document).ready(function () {
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify( {
-                            "user": stringUser,
-                            "products": stringProducts,
-                            "orderPrice": 1,
-                            "dateOfCreate": new Date().format("yyyy-mm-dd"),
-                            "status": "Created"
-                } ),
+                "user": stringUser,
+                "products": stringProducts,
+                "orderPrice": 1,
+                "dateOfCreate": new Date().format("yyyy-mm-dd"),
+                "status": "Created"
+            } ),
+            success: true
+        });
+    });
+
+    $("#addEditDataOrder").click(function () {
+        var stringUser = (function () {
+            var json = null;
+            $.ajax({
+                'async': false,
+                'global': false,
+                'url': '/users/' + $('#inputEditUser').val(),
+                'dataType': "json",
+                'success': function (data) {
+                    json = data;
+                }
+            });
+            return json;
+        })();
+        var stringProducts = '[';
+        for(var i = 0; i < $('#inputEditProducts').val().length; i++ ){
+            var buff = (function () {
+                var json = null;
+                $.ajax({
+                    'async': false,
+                    'global': false,
+                    'url': '/products/' + $('#inputEditProducts').val()[i],
+                    'dataType': "json",
+                    'success': function (data) {
+                        json = data;
+                    }
+                });
+                return json;
+            })();
+            stringProducts += JSON.stringify(buff) + ",";
+        }
+        stringProducts = stringProducts.slice(0, -1);
+        stringProducts = stringProducts + "]";
+        stringProducts = JSON.parse(stringProducts);
+        $.ajax({
+            url: '/orders/' + $('#inputEditIdOrder').val(),
+            type: 'PUT',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify( {
+                "id" : $('#inputEditIdOrder').val(),
+                "user": stringUser,
+                "products": stringProducts,
+                "orderPrice": 1,
+                "dateOfCreate": new Date().format("yyyy-mm-dd"),
+                "status": "Created"
+            } ),
+            success: true
+        });
+    });
+
+    $("#deleteDataOrder").click(function () {
+        $.ajax({
+            url: '/orders/' + $('#inputDeleteIdOrder').val(),
+            type: 'DELETE',
             success: true
         });
     });

@@ -26,7 +26,7 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public void delete(Long id) {
-        Query query = entityManager.createQuery("DELETE FROM Order o WHERE o.id =: id");
+        Query query = entityManager.createQuery("DELETE FROM Order o WHERE o.id = :id");
         query.setParameter("id", id);
         query.executeUpdate();
     }

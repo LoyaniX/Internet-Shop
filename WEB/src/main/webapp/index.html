@@ -311,6 +311,45 @@
                 <button type="button" id="addDataOrder" class="btn btn-dark">Добавить</button>
             </div>
         </form>
+
+        <form  class="container-fluid container-form" id="formEditOrder">
+            <div class="form-row">
+                <div class="form-group col-md-2"></div>
+                <div class="form-group col-md-1">
+                    <label for="inputEditIdOrder">Id</label>
+                    <input type="text" class="form-control" id="inputEditIdOrder" placeholder="ID">
+                </div>
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                    <label for="inputUser">Пользователь</label>
+                    <select class="form-control" id="inputEditUser">
+                        <option disabled>Выберете пользователя</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-1"></div>
+                <div class="form-group col-md-2">
+                    <label for="inputProducts">Продукты</label>
+                    <select class="form-control" id="inputEditProducts" multiple></select>
+                </div>
+            </div>
+            <div class="form" align="center">
+                <button type="button" id="addEditDataOrder" class="btn btn-dark">Изменить</button>
+            </div>
+        </form>
+
+        <form  class="container container-form col-md-2" id="formDeleteOrder" >
+            <div class="form-row" align="center">
+                <div class="form input-group" align="center">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">ID</div>
+                    </div>
+                    <input type="text" class="form-control" id="inputDeleteIdOrder" placeholder="ID">
+                    <label class="col-md-1"></label>
+                    <button type="button" id="deleteDataOrder" class="btn btn-dark">Удалить</button>
+                </div>
+            </div>
+        </form>
+
         <table class="table table-striped order-table" style="margin: 10px">
             <tr><th></th><th></th><th></th><th></th><th></th><th></th></tr>
             <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
