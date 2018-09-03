@@ -78,11 +78,13 @@ $(document).ready(function () {
     $("#showUsers").click(function () {
         $('#tabU').css('display','table');
         $('#tabO, #helloPage, #tabP').css('display','none');
+        $('#formEdit, #formAdd, #formDelete').css('display','none');
     });
 
     $("#showProducts").click(function () {
         $('#tabP').css('display','table');
         $('#tabO, #helloPage, #tabU').css('display', 'none');
+        $('#formEditProd, #formAddProd, #formDeleteProd').css('display','none');
     });
 
     $("#showOrders").click(function () {
@@ -108,19 +110,8 @@ $(document).ready(function () {
     });
 
     $("#showDeleteForm").click(function () {
-        if(!flagFormDelete){
-            $('#formDelete').css('display','table');
-            $('#formEdit').css('display','none');
-            $('#formAdd').css('display', 'none');
-            flagFormDelete = true;
-            flagFormEdit = false;
-            flagFormAdd = false;
-        }else {
-            $('#formDelete').css('display', 'none');
-            $('#formEdit').css('display', 'none');
-            $('#formAdd').css('display', 'none');
-            flagFormDelete = false;
-        }
+        $('#formDelete').css('display','table');
+        $('#formEdit, #formAdd').css('display','none');
     });
 
     $("#addData").click(function () {
@@ -158,51 +149,18 @@ $(document).ready(function () {
     });
 
     $("#showAddFormProd").click(function () {
-        if(!flagFormAddProd){
-            $('#formAddProd').css('display','table');
-            $('#formEditProd').css('display', 'none');
-            $('#formDeleteProd').css('display', 'none');
-            flagFormAddProd = true;
-            flagFormEditProd = false;
-            flagFormDeleteProd = false;
-        }else {
-            $('#formAddProd').css('display', 'none');
-            $('#formEditProd').css('display', 'none');
-            $('#formDeleteProd').css('display', 'none');
-            flagFormAddProd = false;
-        }
+        $('#formAddProd').css('display','table');
+        $('#formEditProd, #formDeleteProd').css('display', 'none');
     });
 
     $("#showEditFormProd").click(function () {
-        if(!flagFormEditProd){
-            $('#formEditProd').css('display','table');
-            $('#formAddProd').css('display', 'none');
-            $('#formDeleteProd').css('display', 'none');
-            flagFormEditProd = true;
-            flagFormAddProd = false;
-            flagFormDeleteProd = false;
-        }else {
-            $('#formEditProd').css('display', 'none');
-            $('#formAddProd').css('display', 'none');
-            $('#formDeleteProd').css('display', 'none');
-            flagFormEditProd = false;
-        }
+        $('#formEditProd').css('display','table');
+        $('#formAddProd, #formDeleteProd').css('display', 'none');
     });
 
     $("#showDeleteFormProd").click(function () {
-        if(!flagFormDeleteProd){
-            $('#formDeleteProd').css('display','table');
-            $('#formEditProd').css('display','none');
-            $('#formAddProd').css('display', 'none');
-            flagFormDeleteProd = true;
-            flagFormEditProd = false;
-            flagFormAddProd = false;
-        }else {
-            $('#formDeleteProd').css('display', 'none');
-            $('#formEditProd').css('display', 'none');
-            $('#formAddProd').css('display', 'none');
-            flagFormDeleteProd = false;
-        }
+        $('#formDeleteProd').css('display','table');
+        $('#formEditProd, #formAddProd').css('display','none');
     });
 
     $("#addDataProd").click(function () {
