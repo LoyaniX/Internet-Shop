@@ -31,8 +31,8 @@ public class ProductController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ProductDTO get(@PathVariable("id") Long id){
-        log.info("Delete product with id {}", id);
+    public @ResponseBody ProductDTO get(@PathVariable("id") Long id){
+        log.info("Get product with id {}", id);
         return productService.get(id);
     }
 

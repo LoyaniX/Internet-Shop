@@ -1,11 +1,17 @@
-#tabU, #tabP, #tabO, #formAddProd, #formEditProd,#formDeleteProd, #formAdd, #formEdit, #formDelete, #row {
+#tabU, #formAddOrder, #tabP, #tabO, #formAddProd, #formEditProd,#formDeleteProd, #formAdd, #formEdit, #formDelete, #row {
     display: none;
 }
 
+#helloPage{
+    display: table;
+}
 .but{
     padding: 10px;
 }
 
 h1{
+    text-align: center;
+}
+p{
     text-align: center;
 }

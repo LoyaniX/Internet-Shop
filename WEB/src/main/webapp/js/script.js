@@ -1,12 +1,13 @@
-var flag = false;
-var flagProd = false;
-var flagOrd = false;
 var flagFormAddProd = false;
 var flagFormEditProd = false;
 var flagFormDeleteProd = false;
 var flagFormAdd = false;
 var flagFormEdit = false;
 var flagFormDelete = false;
+var flagFormAddOrder = false;
+var flagFormEditOrder = false;
+var flagFormDeleteOrder = false;
+
 function show() {
 
     $.getJSON("/users",function(response){
@@ -18,18 +19,7 @@ function show() {
         });
         $('.users-table').html(tblHTML);
     });
-    $.getJSON("/products",function(response){
-        var tblHTML ='<tr><th>ID</th><th>Наименование</th><th>Цена</th><th>Категория</th>' +
-            '             <th>Пол</th><th>Цвет</th><th>Размер</th><th>Количество</th></tr>';
-        $.each(response, function(i, item){
-            tblHTML
-                += '<tr><td>' + item.id + '</td><td>'+ item.name + '</td>' +
-                '<td>' + item.price + '</td><td>' + item.category + '</td>' +
-                '<td>'+ item.gender + '</td><td>'+ item.colour + '</td>' +
-                '<td>'+ item.size + '</td><td>'+ item.quantity + '</td></tr>';
-        });
-        $('.product-table').html(tblHTML);
-    });
+
     $.getJSON("/orders",function(response){
         var tblHTML ='<tr><th>ID</th><th>Пользователь</th><th>Продукты(цена)</th><th>Итоговая цена</th><th>Дата заказа</th><th>Статус</th>';
         $.each(response, function (i, ord) {
@@ -41,27 +31,63 @@ function show() {
         });
         $('.order-table').html(tblHTML);
     });
+    $.getJSON("/products",function(response){
+        var tblHTML ='<tr><th>ID</th><th>Наименование</th><th>Цена</th><th>Категория</th>' +
+            '<th>Пол</th><th>Цвет</th><th>Размер</th><th>Количество</th></tr>';
+        $.each(response, function(i, item){
+            tblHTML += '<tr><td>' + item.id + '</td><td>'+ item.name + '</td>' +
+                '<td>' + item.price + '</td><td>' + item.category + '</td>' +
+                '<td>'+ item.gender + '</td><td>'+ item.colour + '</td>' +
+                '<td>'+ item.size + '</td><td>'+ item.quantity + '</td></tr>';
+        });
+        $('.product-table').html(tblHTML);
+    });
 }
+function showOrders(){
+    $.getJSON("/users",function(response){
+        var select = document.getElementById('inputUser');
+        while (select.options.length > 0){
+            select.options.remove(0);
+        }
+        $.each(response, function(i, item){
+                $('#inputUser').append('<option value="' + item.id +'">' + item.firstName + " " + item.lastName + '</option>');
+        });
+    });
+    $.getJSON("/products",function(response){
+        var select = document.getElementById('inputProducts');
+        while (select.options.length > 0){
+            select.options.remove(0);
+        }
+        $.each(response, function(i, item){
+            $('#inputProducts').append('<option value="' + item.id +'">' + item.name + " (" + item.price + ")" + '</option>');
+        });
+    });
+}
+
 $(document).ready(function () {
 
     show();
     setInterval('show()',500);
+
     $("#showUsers").click(function () {
-        if(!flag){
-            $('#tabU').css('display','table');
-            $('#tabP').css('display','none');
-            $('#tabO').css('display','none');
-            flagOrd = false;
-            flagProd = false;
-            flag = true;
-        }else {
-            $('#tabU').css('display', 'none');
-            $('#tabP').css('display','none');
-            $('#tabO').css('display','none');
-            flagOrd = false;
-            flagProd = false;
-            flag = false;
-        }
+        $('#tabU').css('display','table');
+        $('#tabO, #helloPage, #tabP').css('display','none');
+    });
+
+    $("#showProducts").click(function () {
+        $('#tabP').css('display','table');
+        $('#tabO, #helloPage, #tabU').css('display', 'none');
+    });
+
+    $("#showOrders").click(function () {
+        showOrders();
+        $('#tabO').css('display','table');
+        $('#tabP, #helloPage, #tabU').css('display','none');
+    });
+
+    $("#mainButton").click(function () {
+        $('#helloPage').css('display','table');
+        $('#tabU, #tabP, #tabO').css('display','none');
     });
 
     $("#showAddForm").click(function () {
@@ -144,24 +170,6 @@ $(document).ready(function () {
                                     "age": $('#inputEditAge').val(),
                                     "id": $('#inputEditId').val()})
         });
-    });
-
-    $("#showProducts").click(function () {
-        if(!flagProd){
-            $('#tabP').css('display','table');
-            $('#tabU').css('display', 'none');
-            $('#tabO').css('display','none');
-            flagOrd = false;
-            flag = false;
-            flagProd = true;
-        }else {
-            $('#tabP').css('display', 'none');
-            $('#tabU').css('display', 'none');
-            $('#tabO').css('display','none');
-            flagOrd = false;
-            flag = false;
-            flagProd = false;
-        }
     });
 
     $("#showAddFormProd").click(function () {
@@ -254,24 +262,64 @@ $(document).ready(function () {
         });
     });
 
-
-    $("#showOrders").click(function () {
-        if(!flagOrd){
-            $('#tabO').css('display','table');
-            $('#tabP').css('display','none');
-            $('#tabU').css('display','none');
-            flagOrd = true;
-            flagProd = false;
-            flag = false;
+    $("#showAddFormOrd").click(function () {
+        showOrders();
+        if(!flagFormAddOrder){
+            $('#formAddOrder').css('display','table');
+            flagFormAddOrder = true;
         }else {
-            $('#tabO').css('display','none');
-            $('#tabU').css('display', 'none');
-            $('#tabP').css('display','none');
-            flagProd = false;
-            flag = false;
-            flagOrd = false;
+            $('#formAddOrder').css('display', 'none');
+            flagFormAddOrder= false;
         }
     });
 
-
+    $("#addDataOrder").click(function () {
+        var stringUser = (function () {
+            var json = null;
+            $.ajax({
+                'async': false,
+                'global': false,
+                'url': '/users/' + $('#inputUser').val(),
+                'dataType': "json",
+                'success': function (data) {
+                    json = data;
+                }
+            });
+            return json;
+        })();
+        var stringProducts = '[';
+        for(var i = 0; i < $('#inputProducts').val().length; i++ ){
+            var buff = (function () {
+                var json = null;
+                $.ajax({
+                    'async': false,
+                    'global': false,
+                    'url': '/products/' + $('#inputProducts').val()[i],
+                    'dataType': "json",
+                    'success': function (data) {
+                        json = data;
+                    }
+                });
+                return json;
+            })();
+            stringProducts += JSON.stringify(buff) + ",";
+        }
+        stringProducts = stringProducts.slice(0, -1);
+        stringProducts = stringProducts + "]";
+        stringProducts = JSON.parse(stringProducts);
+        $.ajax({
+            url: '/orders',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify( {
+                            "user": stringUser,
+                            "products": stringProducts,
+                            "orderPrice": 1,
+                            "dateOfCreate": "2018-08-30",
+                            "status": "Created"
+                } ),
+            success: true
+        });
+    });
 });
