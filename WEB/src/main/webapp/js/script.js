@@ -316,7 +316,7 @@ $(document).ready(function () {
                             "user": stringUser,
                             "products": stringProducts,
                             "orderPrice": 1,
-                            "dateOfCreate": "2018-08-30",
+                            "dateOfCreate": new Date().format("yyyy-mm-dd"),
                             "status": "Created"
                 } ),
             success: true

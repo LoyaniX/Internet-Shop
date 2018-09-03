@@ -15,3 +15,15 @@ h1{
 p{
     text-align: center;
 }
+
+@media print {
+    .container{
+        width: auto;
+    }
+}
+
+.table-container {
+    width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
