@@ -50,7 +50,7 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public List<Order> findAllOrdersOfUser(User user) {
-        TypedQuery<Order> findAllOrdersOfUser = entityManager.createQuery("SELECT FROM Order o WHERE o.user =:user", Order.class);
+        TypedQuery<Order> findAllOrdersOfUser = entityManager.createQuery("SELECT o FROM Order o WHERE o.user = :user", Order.class);
         findAllOrdersOfUser.setParameter("user", user);
         return findAllOrdersOfUser.getResultList();
     }
